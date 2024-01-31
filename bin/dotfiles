@@ -64,6 +64,7 @@ function _task_done {
 function _task_faild {
     printf "${OVERWRITE}${LRED} [X]  ${TASK}${LRED}\n"
     _clear_task
+    exit 1;
 }
 
 
@@ -91,31 +92,125 @@ function _cmd {
     exit 1
 }
 
-function install_on_arch {
-    _task "Installing Ansible on ${1}"
-    _cmd "echo ${PASSWORD} | sudo pacman -S ansible --noconfirm"
+function install_python_on_arch {
+  if ! [ -x "$(command -v python3)" ]; then
+    _task "Installing Python3 on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S python3 --noconfirm"
+  else
+    _task "Python3 is installed"; _task_done
+  fi
+  
+  if ! [ -x "$(command -v pip3)" ]; then
+    _task "Installing Python3 Pip on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S python-pip --noconfirm"
+  else
+    _task "Python3 Pip is installed"; _task_done
+  fi
+  
+  if ! pip3 show -qqq watchdog; then
+    _task "Installing Python3 Watchdog on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S python-watchdog --noconfirm"
+  else
+    _task "Python3 Watchdog is installed"; _task_done
+  fi
 }
 
-function install_on_fedora {
+function install_setxkbmap_on_arch {
+  if ! [[ -x "$(command -v setxkbmap)" ]]; then
+    _task "Installing setxkbmap utility on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S setxkbmap --noconfirm"
+  else
+    _task "setxkbmap utility is installed"; _task_done
+  fi
+}
+
+function keyboard_remap_arch {
+  if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+    install_setxkbmap_on_arch ${1}
+    # Swap the Caps Lock and Escape keys in X
+    _task "Swaping the CapLocks key with the escape key"
+      _cmd "setxkbmap -option caps:swapescape"
+#  elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+      # Swap the Caps Lock and Escape keys in Wayland
+#      gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+#  else
+#      echo "Unknown session type: $XDG_SESSION_TYPE"
+  fi
+}
+
+function install_on_arch {
+  if ! [[ -x "$(command -v ansible)" ]]; then
     _task "Installing Ansible on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S ansible --noconfirm"
+  else
+    _task "Ansible is installed"; _task_done
+  fi
+}
+
+
+function install_on_fedora {
+  _task "Installing Ansible on ${1}"
     _cmd "sudo dnf install -y ansible"
 }
 
 function install_on_debian {
-    _task "Installing Ansible on ${1}"
+  _task "Installing Ansible on ${1}"
+    _cmd "sudo apt-get update"
+    _cmd "sudo apt-get install -y software-properties-common"
+    _cmd "sudo apt-add-repository -y ppa:ansible/ansible"
     _cmd "sudo apt-get update"
     _cmd "sudo apt-get install -y ansible"
+    _cmd "sudo apt-get install python3-argcomplete"
+    _cmd "sudo activate-global-python-argcomplete3"
 }
 
 function install_on_mac {
-    _task "Installing Ansible on ${1}"
+  _task "Installing Ansible on ${1}"
     _cmd "brew install ansible"
 }
 
 function export_distro_data {
-    _task "Exporting Distro data to the env"
+  _task "Exporting Distro data to the env"
     _cmd "export $(cat /etc/os-release | tr ' ' '_' | tr -d '"' | grep -v ANSI_COLOR | tr '\n' ' ')"
 }
+
+function install_requirements {
+  #Install Ansible if not exist
+      OS="$(uname -s)"
+      _task "Checking if ${OS} is supported"
+      case "${OS}" in
+          Linux*)
+              export_distro_data;
+              _task "Checking if ${ID} Distro is supported" 
+              case "${ID_LIKE}" in
+                  arch)
+                       install_on_arch ${ID}
+                       install_python_on_arch ${ID}
+                       keyboard_remap_arch ${ID}
+                      ;;
+                  #uncoment to add debian support
+                  #debian)
+                  #    install_on_debian ${ID}
+                  #    ;;
+                  *)
+                      #if [[ ${ID} == "fedora"  ]]; then
+                          #install_on_fedora ${ID};
+                      #else
+                          TASK="${ID} Distro is Unsupported";
+                          _task_faild;
+                      #fi
+                      ;;
+              esac
+              ;;
+          Darwin*)
+              ;;
+          *)
+              TASK="${OS} is Unsupported";
+              _task_faild; 
+              ;;
+      esac
+}
+
 
 function get_user_password {
     _print $YELLOW "User Sudo Password: ";
@@ -132,8 +227,7 @@ IS_FIRST_RUN="$HOME/.dotfiles_run"
 
 #first thing get the user sudo password
 get_user_password;
-
-TASK="Getting user sudo password";
+_task "Getting user sudo password";
 
 #setup a simple vim config just in case
 touch ~/.vimrc && echo "set tabstop=2 softtabstop=2
@@ -141,51 +235,23 @@ set shiftwidth=2
 set expandtab
 set number
 set smartindent
+syntax on
 " > ~/.vimrc
 
 
-#Install Ansible if not exist
-if ! [ -x "$(command -v ansible)" ]; then
-    OS="$(uname -s)"
-    _task "Checking if ${OS} is supported"
-    case "${OS}" in
-        Linux*)
-            export_distro_data;
-            _task "Checking if ${ID} Distro is supported" 
-            case "${ID_LIKE}" in
-                arch)
-                    install_on_arch ${ID}
-                    ;;
-                #uncoment to add debian support
-                #debian)
-                #    install_on_debian ${ID}
-                #    ;;
-                *)
-                    #if [[ ${ID} == "fedora"  ]]; then
-                        #install_on_fedora ${ID};
-                    #else
-                        TASK="${ID} Distro is Unsupported";
-                        _task_faild;
-                    #fi
-                    ;;
-            esac
-            ;;
-        Darwin*)
-            ;;
-        *)
-            TASK="${OS} is Unsupported";
-            _task_faild; 
-            ;;
-    esac
-fi
+
+install_requirements
+
 
 # Generate SSH keys
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
-    _task "Generating SSH keys"
-        _cmd "mkdir -p $SSH_DIR"
-        _cmd "chmod 700 $SSH_DIR"
-        _cmd "ssh-keygen -b 4096 -t rsa -f $SSH_DIR/id_rsa -N '' -C $USER@$HOSTNAME"
-        _cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
+  _task "Generating SSH keys"
+    _cmd "mkdir -p $SSH_DIR"
+    _cmd "chmod 700 $SSH_DIR"
+    _cmd "ssh-keygen -b 4096 -t rsa -f $SSH_DIR/id_rsa -N '' -C $USER@$HOSTNAME"
+    _cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
+else
+  _task "SSH Keys are Setup"
 fi
 
 # Clone repository
@@ -204,13 +270,18 @@ _task "Updating Galaxy"
     _cmd "ansible-galaxy install -r requirements.yml"
 
 _task "Running playbook"; _task_done
-if [[ -f $VAULT_SECRET ]]; then
-    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
-else
-    ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
-fi
+#if [[ -f $VAULT_SECRET ]]; then
+#    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+#else
+#    ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
+#fi
 
 #return to the last directorie
 popd 2>&1 > /dev/null
 
-_task_done;
+if ! [[ -f "$IS_FIRST_RUN" ]]; then
+    echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"
+    echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
+    touch "$IS_FIRST_RUN"
+fi
+
