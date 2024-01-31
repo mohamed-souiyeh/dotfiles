@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: testing
+      ansible.builtin.shell:
+        cmd: "echo hello world from ansible"
+      tags:
+        - always
