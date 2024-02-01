@@ -92,15 +92,15 @@ function _cmd {
     exit 1
 }
 
-function install_python_on_arch {
-  if ! [ -x "$(command -v python3)" ]; then
+function install_utilities_on_arch {
+  if ! [[ -x "$(command -v python3)" ]]; then
     _task "Installing Python3 on ${1}"
       _cmd "echo ${PASSWORD} | sudo pacman -S python3 --noconfirm"
   else
     _task "Python3 is installed"; _task_done
   fi
   
-  if ! [ -x "$(command -v pip3)" ]; then
+  if ! [[ -x "$(command -v pip3)" ]]; then
     _task "Installing Python3 Pip on ${1}"
       _cmd "echo ${PASSWORD} | sudo pacman -S python-pip --noconfirm"
   else
@@ -113,6 +113,50 @@ function install_python_on_arch {
   else
     _task "Python3 Watchdog is installed"; _task_done
   fi
+  
+  if ! pip3 show -qqq python-xlib; then
+    _task "Installing Python-xlib on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S python-xlib --noconfirm"
+  else
+    _task "Python-xlib is installed"; _task_done
+  fi
+
+  if ! [[ -x "$(command -v gcc)" ]]; then
+    _task "Installing GNU Compiler Collection (GCC) on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S gcc --noconfirm"
+  else
+    _task "GNU Compiler Collection (GCC) is installed"; _task_done
+  fi
+
+  if ! [[ -x "$(command -v make)" ]]; then
+    _task "Installing GNU Make utility on ${1}"
+      _cmd "echo ${PASSWORD} | sudo pacman -S make --noconfirm"
+  else
+    _task "GNU Make utility is installed"; _task_done
+  fi
+
+  if ! pacman -Q glibc > /dev/null 2>&1; then
+    _task "Installing GNU C Library on ${1}"
+      _cmd "sudo pacman -S glibc --noconfirm"
+  else
+    _task "GNU C Library is installed"; _task_done
+  fi
+
+  if ! pacman -Q binutils > /dev/null 2>&1; then
+    _task "Installing GNU Binutils on ${1}"
+      _cmd "sudo pacman -S binutils --noconfirm"
+  else
+    _task "GNU Binutils is installed"; _task_done
+  fi
+
+  if ! pacman -Q gdb > /dev/null 2>&1; then
+    _task "Installing GNU gdb on ${1}"
+      _cmd "sudo pacman -S gdb --noconfirm"
+  else
+    _task "GNU gdb is installed"; _task_done
+  fi
+  
+
 }
 
 function install_setxkbmap_on_arch {
@@ -185,8 +229,7 @@ function install_requirements {
               case "${ID_LIKE}" in
                   arch)
                        install_on_arch ${ID}
-                       install_python_on_arch ${ID}
-                       keyboard_remap_arch ${ID}
+                       install_utilities_on_arch ${ID}
                       ;;
                   #uncoment to add debian support
                   #debian)
@@ -213,9 +256,12 @@ function install_requirements {
 
 
 function get_user_password {
-    _print $YELLOW "User Sudo Password: ";
-    read -s PASSWORD;
-    printf "\n";
+#    _print $YELLOW "User Sudo Password: ";
+#    read -s PASSWORD;
+    sudo echo
+    _print $OVERWRITE
+    _print $OVERWRITE
+#    printf "\n";
 }
 
 CONFIG_DIR="$HOME/.config/dotfiles"
@@ -241,6 +287,9 @@ syntax on
 
 
 install_requirements
+
+#installing keyd
+_task "Installing keyd from Source"
 
 
 # Generate SSH keys
