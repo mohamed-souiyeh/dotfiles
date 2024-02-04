@@ -1,9 +1,37 @@
 - hosts: localhost
   connection: local
-  become: true
+#  become: true
+
+  pre_tasks:
+    - name: Detect Host User
+      ansible.builtin.import_tasks: pre_tasks/whoami.yml
+      tags:
+        - always
+    - name: Install yay
+      ansible.builtin.import_tasks: pre_tasks/yay.yml
+      tags:
+        - always
+
   tasks:
-    - name: testing
-      ansible.builtin.shell:
-        cmd: "echo hello world from ansible"
+    - name: Set roles
+      ansible.builtin.set_fact:
+        run_roles: "{{ ansible_run_tags != ['all'] and ansible_run_tags or default_roles | difference(exclude_roles | default([])) }}"
+      tags:
+        - always
+
+    - name: Display roles
+      ansible.builtin.debug:
+        var: run_roles
+      tags:
+        - always
+    - name: Run roles
+      ansible.builtin.include_role:
+        apply:
+          tags:
+            - "{{ roles_item }}"
+        name: "{{ roles_item }}"
+      loop_control:
+        loop_var: roles_item
+      with_items: "{{ run_roles }}"
       tags:
         - always

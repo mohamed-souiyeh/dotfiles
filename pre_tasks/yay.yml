@@ -1,0 +1,12 @@
+---
+- name: Update package database
+  ansible.builtin.pacman:
+    update_cache: true
+    upgrade: yes
+  become: yes
+  
+- name: Installing yay
+  ansible.builtin.pacman:
+    name: yay
+    state: latest
+  become: yes

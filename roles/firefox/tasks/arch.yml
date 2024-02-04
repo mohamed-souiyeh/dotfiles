@@ -1,0 +1,7 @@
+---
+- name: Install Firefox
+  ansible.builtin.package:
+    name:
+      - firefox
+    state: latest
+  become: yes

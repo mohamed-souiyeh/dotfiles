@@ -1,0 +1,9 @@
+---
+- name: Install Pyenv
+  kewlfft.aur.aur:
+    use: yay
+    state: latest
+    name:
+      - pyenv
+      - pyenv-virtualenv
+

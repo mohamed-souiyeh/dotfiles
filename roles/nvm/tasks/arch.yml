@@ -1,0 +1,8 @@
+---
+- name: Install nvm
+  ansible.builtin.package:
+    name:
+      - nvm
+    state: latest
+  become: yes
+

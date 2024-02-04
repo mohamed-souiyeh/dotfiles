@@ -1,0 +1,8 @@
+---
+- name: Install VS-Code
+  kewlfft.aur.aur:
+    use: yay
+    state: latest
+    name:
+      - visual-studio-code-bin
+

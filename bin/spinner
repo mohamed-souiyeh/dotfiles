@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # Shows a spinner while another command is running. Randomly picks one of 12 spinner styles.
 # @args command to run (with any parameters) while showing a spinner. 
 #       E.g. ‹spinner sleep 10›
@@ -84,7 +85,6 @@ function spinner() {
   return $?
 }
 
-("$@" 2>&1 > /dev/null) &
 
-spinner $!
+
 

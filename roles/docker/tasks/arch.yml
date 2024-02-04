@@ -1,0 +1,42 @@
+---
+- name: Install Docker
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-compose
+    state: latest
+  become: yes
+
+- name: Enable service
+  ansible.builtin.systemd:
+    enabled: yes
+    name: docker
+    state: started
+  become: yes
+
+- name: Add to group
+  ansible.builtin.user:
+    append: yes
+    groups: docker
+    name: "{{ ansible_env['USER'] }}"
+  become: yes
+
+- name: Check if /etc/docker exists
+  ansible.builtin.stat:
+    path: "/etc/docker"
+  register: result
+
+- name: Create destination directory for daemon.json if doesn't exist
+  ansible.builtin.file:
+    path: "/etc/docker"
+    state: directory
+    mode: '0755'
+  when: not result.stat.exists
+  become: yes
+
+- name: Copy daemon.json
+  ansible.builtin.template:
+    dest: "/etc/docker/daemon.json"
+    src: "daemon.json"
+  become: yes
+  notify: restart_docker
