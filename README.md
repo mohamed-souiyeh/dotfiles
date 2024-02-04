@@ -13,7 +13,7 @@ This shell script is also used to initialize your environment after performing a
 > NOTE: You must follow required steps before running this command or things may become unusable until fixed.
 
 ```bash
-$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/mohamed-souiyeh/dotfiles/master/bin/dotfiles)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/mohamed-souiyeh/dotfiles/master/bin/dotfiles)"
 ```
 
 ### Update
