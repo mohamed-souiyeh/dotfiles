@@ -1,6 +1,8 @@
 # dotfiles
 this is my dotfiles and system configuration repo
 
+- [ ] still need to configure my ssh stuff after setup and cloning
+
 
 ### Install
 
