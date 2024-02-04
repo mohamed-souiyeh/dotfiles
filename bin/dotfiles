@@ -240,7 +240,7 @@ DOTFILES_BIN_DIR="$DOTFILES_DIR/bin"
 SSH_DIR="$HOME/.ssh"
 IS_FIRST_RUN="$HOME/.dotfiles_run"
 
-if ! [[ -x "$(command -v vim)"]]; then
+if ! [[ -x "$(command -v vim)" ]]; then
   _task "Installing vim"
     _cmd "sudo pacman -S vim --noconfirm"
 else
