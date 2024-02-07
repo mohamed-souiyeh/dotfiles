@@ -126,61 +126,17 @@ function install_utilities_on_arch {
       _cmd "sudo pacman -S --needed base-devel --noconfirm"
   else
     _task "base-devel is installed"; _task_done
-  fi 
-}
-
-function install_setxkbmap_on_arch {
-  if ! [[ -x "$(command -v setxkbmap)" ]]; then
-    _task "Installing setxkbmap utility on ${1}"
-      _cmd "echo ${PASSWORD} | sudo pacman -S setxkbmap --noconfirm"
-  else
-    _task "setxkbmap utility is installed"; _task_done
   fi
-}
 
-function keyboard_remap_arch {
-  if [[ $XDG_SESSION_TYPE == "x11" ]]; then
-    install_setxkbmap_on_arch ${1}
-    # Swap the Caps Lock and Escape keys in X
-    _task "Swaping the CapLocks key with the escape key"
-      _cmd "setxkbmap -option caps:swapescape"
-#  elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
-      # Swap the Caps Lock and Escape keys in Wayland
-#      gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
-#  else
-#      echo "Unknown session type: $XDG_SESSION_TYPE"
-  fi
 }
 
 function install_on_arch {
   if ! [[ -x "$(command -v ansible)" ]]; then
     _task "Installing Ansible on ${1}"
-      _cmd "echo ${PASSWORD} | sudo pacman -S ansible --noconfirm"
+      _cmd "sudo pacman -S ansible --noconfirm"
   else
     _task "Ansible is installed"; _task_done
   fi
-}
-
-
-function install_on_fedora {
-  _task "Installing Ansible on ${1}"
-    _cmd "sudo dnf install -y ansible"
-}
-
-function install_on_debian {
-  _task "Installing Ansible on ${1}"
-    _cmd "sudo apt-get update"
-    _cmd "sudo apt-get install -y software-properties-common"
-    _cmd "sudo apt-add-repository -y ppa:ansible/ansible"
-    _cmd "sudo apt-get update"
-    _cmd "sudo apt-get install -y ansible"
-    _cmd "sudo apt-get install python3-argcomplete"
-    _cmd "sudo activate-global-python-argcomplete3"
-}
-
-function install_on_mac {
-  _task "Installing Ansible on ${1}"
-    _cmd "brew install ansible"
 }
 
 function export_distro_data {
@@ -295,10 +251,10 @@ fi
 # Clone repository
 if ! [[ -d "$DOTFILES_DIR" ]]; then
     _task "Cloning repository"
-      _cmd "git clone --quiet https://github.com/mohamed-souiyeh/dotfiles.git $DOTFILES_DIR"
+      # _cmd "git clone --quiet https://github.com/mohamed-souiyeh/dotfiles.git $DOTFILES_DIR"
 else
     _task "Updating repository"
-      _cmd "git -C $DOTFILES_DIR pull --quiet"
+      # _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
 #technicaly change directory and add it to a stack of directories

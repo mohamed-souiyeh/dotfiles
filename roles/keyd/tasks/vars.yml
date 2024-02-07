@@ -1,0 +1,7 @@
+---
+keyd_dependencies:
+  - python-xlib
+  - gcc
+  - make
+  - glibc
+  - systemd

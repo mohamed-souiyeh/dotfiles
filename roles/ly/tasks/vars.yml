@@ -1,0 +1,7 @@
+---
+
+ly_dependencies:
+  - pam
+  - make
+  - gcc
+  - glibc

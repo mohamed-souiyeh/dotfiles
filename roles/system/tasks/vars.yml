@@ -1,0 +1,6 @@
+---
+# vars.yml
+system_dependencies:
+  - jq
+  - binutils
+  - gdb

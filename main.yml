@@ -1,7 +1,11 @@
 - hosts: localhost
   connection: local
-#  become: true
 
+  vars:
+    keyd_vars:
+      PREFIX: "{{ ansible_user_dir }}/.local"
+      CONFIG_DIR: "{{ ansible_user_dir }}/.config/keyd"
+   
   pre_tasks:
     - name: Detect Host User
       ansible.builtin.import_tasks: pre_tasks/whoami.yml
@@ -24,6 +28,25 @@
         var: run_roles
       tags:
         - always
+
+    - name: Run system role
+      ansible.builtin.include_role:
+        apply:
+          tags:
+            - system
+        name: system
+      tags:
+        - always
+
+    - name: Run zsh role
+      ansible.builtin.include_role:
+        apply:
+          tags:
+            - zsh
+        name: zsh
+      tags:
+        - always
+
     - name: Run roles
       ansible.builtin.include_role:
         apply:

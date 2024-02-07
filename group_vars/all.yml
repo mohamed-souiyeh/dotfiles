@@ -1,12 +1,10 @@
 #dont forget to describe each role for what
 default_roles:
-  - system
 # like cat but more fancy
   - bat
 # like top but more fancy
   - bottom
   - discord
-# need to setyp docker
   - docker
   - doppler-cli
   - firefox
@@ -14,20 +12,16 @@ default_roles:
   - github-cli
   - go
   - kitty
-# need to setup lazygit playbook
   - lazygit
-
   - nvm
   - oh-my-zsh
-# need to fix some errors here
   - postman
 # like nvm but for python
   - pyenv
   - ripgrep
   - rust
-# need to fix some errors here
   - spotify
-# need to fix some errors here
   - visual-studio-code
-  - zsh
-#  - keyd
+  - keyd
+  # - ly #need more research for wayland support
+
