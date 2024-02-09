@@ -1,0 +1,17 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: "Installing wRofi dependencies"
+  ansible.builtin.pacman:
+    name: "{{ wRofi_dependencies }}"
+    state: present
+  become: true
+
+- name: Install wRofi
+  kewlfft.aur.aur:
+    use: yay
+    state: latest
+    name:
+      - rofi-lbonn-wayland-git
+

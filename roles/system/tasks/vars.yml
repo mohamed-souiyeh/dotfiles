@@ -4,3 +4,6 @@ system_dependencies:
   - jq
   - binutils
   - gdb
+  - ncdu
+  - fzf
+  - dmenu

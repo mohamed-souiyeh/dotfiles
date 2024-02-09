@@ -23,5 +23,7 @@ default_roles:
   - spotify
   - visual-studio-code
   - keyd
-  # - ly #need more research for wayland support
-
+  - sddm
+  - zellij
+  - nvim
+  - wayland-Rofi

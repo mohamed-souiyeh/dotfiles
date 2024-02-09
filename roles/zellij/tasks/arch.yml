@@ -1,0 +1,8 @@
+---
+- name: Install Zellij
+  ansible.builtin.package:
+    name:
+      - zellij
+    state: latest
+  become: yes
+

@@ -1,0 +1,15 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: "Installing Neovim dependencies"
+  ansible.builtin.pacman:
+    name: "{{ nvim_dependencies }}"
+    state: present
+  become: true
+
+- name: "Installing Neovim"
+  ansible.builtin.pacman:
+    name: "neovim"
+    state: present
+  become: true

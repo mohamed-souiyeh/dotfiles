@@ -41,9 +41,14 @@
     state: absent
   become: true
 
-- name: Enable and start keyd service
+- name: Enable keyd service
   ansible.builtin.service:
     name: keyd
     enabled: yes
+  become: true
+
+- name: Start keyd service
+  ansible.builtin.service:
+    name: keyd
     state: started
   become: true
