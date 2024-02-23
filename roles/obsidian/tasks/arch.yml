@@ -1,0 +1,47 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: Install obsidian dependencies
+  ansible.builtin.pacman:
+    name: "{{ obsidian_dependencies }}"
+    state: present
+  become: true
+
+- name: Installing Obsidian
+  ansible.builtin.pacman:
+    name: obsidian
+    state: present
+  become: true
+
+# - name: Get latest Obsidian release URL
+#   uri:
+#     url: https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest
+#     return_content: yes
+#     headers:
+#       Authorization: "token {{ github_api_token }}"
+#   no_log: true
+#   register: release_info
+
+# - name: Extract Obsidian AppImage download URL
+#   set_fact:
+#     appimage_url: "{{ item.browser_download_url }}"
+#   loop: "{{ release_info.json.assets }}"
+#   when: item.name is match('.*\\.AppImage$') and not item.name is match('.*arm.*')
+#   loop_control:
+#     label: "{{ item.name }}"
+
+# - name: Print Obsidian AppImage download URL (optional)
+#   debug:
+#     msg: "AppImage download URL: {{ appimage_url }}"
+
+# - name: print apps directory
+#   debug:
+#     var: apps_directory
+
+
+# - name: Download Obsidian AppImage
+#   get_url:
+#     url: "{{ appimage_url }}"
+#     dest: "{{ apps_directory }}/obsidian"
+#     mode: '0755'

@@ -1,8 +1,5 @@
 ---
 
-- name: Include variables
-  include_vars: vars.yml
-
 - name: "Install SDDM"
   ansible.builtin.pacman:
     name: 

@@ -1,0 +1,31 @@
+---
+
+# Install Nerd Fonts
+install_fonts: true
+installed_nerdfonts:
+  - JetBrainsMono
+
+# Install flatpak and listed packages
+install_flatpak: true
+flatpak_packages:
+  - app/org.mozilla.firefox/x86_64/stable
+
+
+# Create custom directories
+create_directories: true
+directories:
+  - $HOME/Documents/repositories/
+  - $HOME/apps
+  - $HOME/.local/bin
+
+apps_directory: $HOME/apps
+
+git_user_email: mohamedsouiyeh3@gmail.com
+git_user_name: mohamed-souiyeh
+
+#zsh env vars
+zsh_public:
+  TEST: "test"
+
+zsh_private:
+  TESTO: "testo"

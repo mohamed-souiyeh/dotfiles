@@ -1,0 +1,6 @@
+---
+- name: Install flatpak on Arch Linux
+  pacman:
+    name: flatpak
+    state: present
+  become: true

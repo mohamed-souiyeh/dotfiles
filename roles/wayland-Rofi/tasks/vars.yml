@@ -1,3 +1,10 @@
 ---
 wRofi_dependencies:
   - wayland
+
+
+wRofi_scripts:
+  - rofi-emoji
+  - rofi-calc
+  - clipmenu
+  

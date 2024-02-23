@@ -1,8 +1,8 @@
 ---
-- name: Install Firefox
+- name: Install Brave
   ansible.builtin.package:
     name:
-      - firefox
+      - brave-browser
     state: latest
   become: yes
 

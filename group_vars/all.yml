@@ -8,7 +8,10 @@ default_roles:
   - docker
   - doppler-cli
   - firefox
+  - brave
+  - fonts
   - git
+  - obsidian
   - github-cli
   - go
   - kitty
@@ -26,4 +29,12 @@ default_roles:
   - sddm
   - zellij
   - nvim
+  - zoxide
   - wayland-Rofi
+
+exclude_roles:
+  - stow
+  - dirs
+  - system
+  - zsh
+  - flatpak

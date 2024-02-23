@@ -1,8 +1,7 @@
 ---
-- name: Install Firefox
+- name: Install Zoxide
   ansible.builtin.package:
     name:
-      - firefox
+      - zoxide
     state: latest
   become: yes
-

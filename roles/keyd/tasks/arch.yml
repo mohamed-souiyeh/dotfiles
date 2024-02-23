@@ -25,20 +25,34 @@
     version: master
 
 - name: Make keyd
-  ansible.builtin.shell:
-    cmd: make PREFIX="{{ keyd_vars.PREFIX }}" CONFIG_DIR="{{ keyd_vars.CONFIG_DIR }}"
+  community.general.make:
     chdir: /tmp/keyd
+    params:
+      PREFIX: "{{ keyd_vars.PREFIX }}"
+      CONFIG_DIR: "{{ keyd_vars.CONFIG_DIR }}"
+  become: true
+
 
 - name: Install keyd
-  ansible.builtin.shell:
-    cmd: make install PREFIX="{{ keyd_vars.PREFIX }}" CONFIG_DIR="{{ keyd_vars.CONFIG_DIR }}"
+  community.general.make:
     chdir: /tmp/keyd
+    params:
+      PREFIX: "{{ keyd_vars.PREFIX }}"
+      CONFIG_DIR: "{{ keyd_vars.CONFIG_DIR }}"
+    target: install
   become: true
 
 - name: Remove keyd
   ansible.builtin.file:
     path: /tmp/keyd
     state: absent
+  become: true
+
+- name: Create symbolic link for keyd service
+  ansible.builtin.file:
+    src: "{{ keyd_vars.PREFIX }}/lib/systemd/system/keyd.service"
+    dest: "/etc/systemd/system/keyd.service"
+    state: link
   become: true
 
 - name: Enable keyd service

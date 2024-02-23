@@ -1,4 +1,12 @@
 ---
+- name: Uninstall old docker
+  ansible.builtin.package:
+    name: 
+    - docker
+    - docker-compose
+    state: absent
+  become: yes
+
 - name: Install Docker
   ansible.builtin.package:
     name:
@@ -11,7 +19,6 @@
   ansible.builtin.systemd:
     enabled: yes
     name: docker
-    state: started
   become: yes
 
 - name: Add to group

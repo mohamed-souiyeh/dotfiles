@@ -120,7 +120,7 @@ function install_utilities_on_arch {
   else
     _task "Git is installed"; _task_done
   fi
-  
+
   if ! pacman -Qs base-devel > /dev/null; then
     _task "Installing base-devel on ${1}"
       _cmd "sudo pacman -S --needed base-devel --noconfirm"
@@ -190,6 +190,7 @@ function get_user_password {
 #    printf "\n";
 }
 
+APP_DIR="$HOME/apps"
 VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
 DOTFILES_DIR="$HOME/.dotfiles"
 DOTFILES_BIN_DIR="$DOTFILES_DIR/bin"
@@ -223,6 +224,9 @@ _task "Getting user sudo password"; _task_done
 #exporting the bin folder to path
 _task "Exporting bin to path"
   _cmd 'export PATH="$DOTFILES_BIN_DIR:${PATH}"'
+
+_task "Exporting the apps to path"
+  _cmd 'export PATH="$APP_DIR:${PATH}"'
 
 install_requirements
 
@@ -265,11 +269,8 @@ _task "Updating Galaxy"
 
 _task "Running playbook"; _task_done
 # Run playbook
-if [[ -f $VAULT_SECRET ]]; then
-  ansible-playbook $DFLAGS --diff --extra-vars "@$DOTFILES_DIR/values.yml" --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
-else
-  ansible-playbook $DFLAGS --diff --extra-vars "@$DOTFILES_DIR/values.yml" "$DOTFILES_DIR/main.yml" "$@"
-fi
+ansible-playbook $DFLAGS --diff "$DOTFILES_DIR/main.yml" --ask-vault-pass --ask-become-pass "$@"
+
 
 #return to the last directorie
 popd 2>&1 > /dev/null

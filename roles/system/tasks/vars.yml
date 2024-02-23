@@ -7,3 +7,5 @@ system_dependencies:
   - ncdu
   - fzf
   - dmenu
+  - xterm
+  - unzip
