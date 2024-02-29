@@ -1,0 +1,22 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: "Installing Rofi dependencies"
+  ansible.builtin.pacman:
+    name: "{{ Rofi_dependencies }}"
+    state: present
+  become: true
+
+- name: Install Rofi
+  ansible.builtin.pacman:
+    name: rofi
+    state: present
+  become: true
+
+- name: "Install Rofi scripts"
+  ansible.builtin.pacman:
+    name: "{{ Rofi_scripts }}"
+    state: present
+  become: true
+

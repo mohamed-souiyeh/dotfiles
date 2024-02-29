@@ -1,0 +1,10 @@
+---
+
+hyprland_dependencies:
+  - dunst
+  - waybar
+  - xdg-desktop-portal-hyprland
+  - qt5-wayland
+  - qt6-wayland
+  - hyprpaper
+  - ttf-font-awesome

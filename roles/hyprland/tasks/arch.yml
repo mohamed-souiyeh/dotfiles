@@ -1,0 +1,16 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: Install Hyprland dependencies
+  ansible.builtin.pacman:
+    name: "{{ hyprland_dependencies }}"
+    state: present
+  become: true
+
+- name: Install Hyprland
+  ansible.builtin.pacman:
+    name: hyprland
+    state: present
+  become: true
+

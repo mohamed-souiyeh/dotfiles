@@ -1,0 +1,12 @@
+---
+qtile_dependencies:
+  - dunst
+  - nitrogen
+  - ttf-font-awesome
+  - xorg
+  - xorg-xinit
+  - picom
+  - neofetch
+  - python-dbus-next
+  - python-libcst
+  - stow

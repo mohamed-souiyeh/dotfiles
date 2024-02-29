@@ -16,6 +16,23 @@
       }}
   loop: "{{ installed_nerdfonts }}"
 
+- name: Delete existing fonts.
+  ansible.builtin.file:
+    path: "/tmp/{{ item.name }}"
+    state: absent
+  loop: "{{ font_dl_urls }}"
+  throttle: 1
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Delete existing unzip directory.
+  ansible.builtin.file:
+    path: "/tmp/{{ item.name }}-unzip"
+    state: absent
+  loop: "{{ font_dl_urls }}"
+  loop_control:
+    label: "{{ item.name }}"
+
 - name: Download fonts.
   ansible.builtin.get_url:
     url: "{{ item.browser_download_url }}"

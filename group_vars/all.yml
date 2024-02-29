@@ -23,14 +23,13 @@ default_roles:
   - pyenv
   - ripgrep
   - rust
-  - spotify
   - visual-studio-code
   - keyd
   - sddm
   - zellij
   - nvim
   - zoxide
-  - wayland-Rofi
+  - rofi
 
 exclude_roles:
   - stow
@@ -38,3 +37,8 @@ exclude_roles:
   - system
   - zsh
   - flatpak
+  # needs to be stable before adding it
+  - hyprland
+  - wayland-Rofi
+  - spotify
+  - qtile

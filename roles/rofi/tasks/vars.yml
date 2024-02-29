@@ -1,0 +1,10 @@
+---
+Rofi_dependencies:
+  - rofi
+
+
+Rofi_scripts:
+  - rofi-emoji
+  - rofi-calc
+  - clipmenu
+  

@@ -1,0 +1,51 @@
+---
+
+- name: Include variables
+  include_vars: vars.yml
+
+- name: Gather service facts
+  ansible.builtin.service_facts:
+
+- name: Install Qtile dependencies
+  ansible.builtin.pacman:
+    name: "{{ qtile_dependencies }}"
+    state: present
+  become: true
+
+- name: Install Qtile
+  ansible.builtin.pacman:
+    name: qtile
+    state: present
+  become: true
+
+# - name: Mask the plasma-kwin_x11.service if it exists
+#   ansible.builtin.systemd:
+#     name: plasma-kwin_x11.service
+#     masked: yes
+#   when: "'plasma-kwin_x11.service' in ansible_facts.services"
+
+# - name: stow systemd services files
+#   ansible.builtin.command:
+#     cmd: stow --target="/etc/systemd/system/" systemd --verbose=2
+#     chdir: "{{ playbook_dir }}/configs"
+#   register: result
+#   changed_when: 'result.stderr is search("LINK: ")'
+#   become: true
+
+# - name: Reload systemd manager configuration
+#   ansible.builtin.systemd:
+#     daemon_reload: yes
+#   become: yes
+
+# - name: Enable plasma-custom-wm service
+#   ansible.builtin.systemd:
+#     name: plasma-custom-wm
+#     enabled: yes
+#   become: yes
+
+# - name: Enable plasma-custom-wm
+#   ansible.builtin.command:
+#     cmd: systemctl enable plasma-custom-wm
+  
+
+

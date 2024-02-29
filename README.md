@@ -2,7 +2,22 @@
 this is my dotfiles and system configuration repo
 
 - [ ] still need to configure my ssh stuff after setup and cloning
+- [ ] write a proper README
 
+
+## Qtile Key Bindings
+
+The following custom key bindings are enabled (can be customized in ~/.config/hypr/hyprland.conf)
+
+- <kbd>SUPER</kbd> + <kbd>RETURN</kbd> to start terminal kitty
+- <kbd>SUPER</kbd> + <kbd>Q</kbd> to quit an application
+- <kbd>SUPER</kbd> + <kbd>B</kbd> to start browser Brave
+- <kbd>SUPER</kbd> + <kbd>CTRL</kbd> + <kbd>Q</kbd> to exit Qtile
+- <kbd>SUPER</kbd></kbd> + <kbd>CTRL</kbd> + <kbd>RETURN</kbd> to start launcher rofi
+- <kbd>SUPER</kbd> + <kbd>T</kbd> to toggle floating
+- <kbd>SUPER</kbd> + <kbd>F</kbd> to toggle fullscreen
+- <kbd>SUPER</kbd> + <kbd>1-9</kbd> to switch workspaces
+- more key bindings in ~/.config/qtile/config.py
 
 ### Install
 
