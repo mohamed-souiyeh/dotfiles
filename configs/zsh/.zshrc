@@ -7,11 +7,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PYENV_PATH="$PYENV_ROOT/bin"
 
 # DOTFILES
-export DOTFILES_PATH="$HOME/.dotfiles/bin"
+export DOTFILES_PATH="$HOME/.dotfiles/configs/bin/.local/bin"
 
 # PATH
 export PATH="$PYENV_SHIMS:$PYENV_PATH:$DOTFILES_PATH:/usr/local/sbin:$PATH"
-#export PATH="$HOME/.local/bin':$DOTFILES_PATH:/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/sbin:$PATH"
 
 # OH-MY-ZSH
 export ZSH="$HOME/.oh-my-zsh"

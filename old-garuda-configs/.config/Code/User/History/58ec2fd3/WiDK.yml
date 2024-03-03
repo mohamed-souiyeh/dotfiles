@@ -1,0 +1,13 @@
+---
+
+stow_dependencies:
+  - git
+
+
+exclude_list:
+  - qtile
+  - alacritty
+  - dunst
+  - rofi
+  - picom
+  -

@@ -1,0 +1,72 @@
+{
+  "python.pythonPath": "/usr/bin/python3",
+  "kite.showWelcomeNotificationOnStartup": false,
+  "editor.fontSize": 13,
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "expand",
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "Default Dark+",
+  "python.testing.pytestEnabled": true,
+  "sync.gist": "0eb861eb2cd54e7057f262e0aff223d4",
+  "html.format.wrapLineLength": 125,
+  "editor.wordWrapColumn": 90,
+  "window.dialogStyle": "custom",
+  "editor.fontLigatures": true,
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "explorer.confirmDragAndDrop": false,
+  "makefile.makefilePath": "${workspaceFolder}/*",
+  "editor.detectIndentation": false,
+  "gitlens.graph.minimap.additionalTypes": [
+    "localBranches",
+    "stashes",
+    "remoteBranches"
+  ],
+  "gitlens.codeLens.scopes": ["document", "containers", "blocks"],
+  "gitlens.graph.dimMergeCommits": true,
+  "gitlens.graph.showRemoteNames": true,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "application.shellEnvironmentResolutionTimeout": 100,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnPaste": true,
+  "git.autofetch": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "files.associations": {
+    "*.ts": "typescript"
+  },
+  "editor.tabSize": 2,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "explorer.confirmDelete": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+},
+  "files.autoSave": "afterDelay"
+}

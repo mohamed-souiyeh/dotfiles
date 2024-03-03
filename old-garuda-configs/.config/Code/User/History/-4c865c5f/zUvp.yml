@@ -1,0 +1,68 @@
+---
+- name: Include variables
+  include_vars: vars.yml
+
+- name: Remove keyd
+  ansible.builtin.file:
+    path: /tmp/keyd
+    state: absent
+  become: true
+
+- name: Install keyd dependencies
+  ansible.builtin.pacman:
+    name: "{{ keyd_dependencies }}"
+    state: present
+  become: true
+
+- name: Clone keyd
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    dest: "/tmp/keyd"
+    repo: https://github.com/rvaiya/keyd.git
+    single_branch: yes
+    update: yes
+    version: master
+
+- name: Make keyd
+  community.general.make:
+    chdir: /tmp/keyd
+    params:
+      PREFIX: "{{ keyd_vars.PREFIX }}"
+      CONFIG_DIR: "{{ keyd_vars.CONFIG_DIR }}"
+  become: false
+
+
+- name: Install keyd
+  community.general.make:
+    chdir: /tmp/keyd
+    params:
+      PREFIX: "{{ keyd_vars.PREFIX }}"
+      CONFIG_DIR: "{{ keyd_vars.CONFIG_DIR }}"
+    target: install
+  become: true
+
+- name: Remove keyd
+  ansible.builtin.file:
+    path: /tmp/keyd
+    state: absent
+  become: true
+
+- name: Create symbolic link for keyd service
+  ansible.builtin.file:
+    src: "{{ keyd_vars.PREFIX }}/lib/systemd/system/keyd.service"
+    dest: "/etc/systemd/system/keyd.service"
+    state: link
+  become: true
+
+- name: Enable keyd service
+  ansible.builtin.service:
+    name: keyd
+    enabled: yes
+  become: true
+
+- name: Start keyd service
+  ansible.builtin.service:
+    name: keyd
+    state: started
+  become: true

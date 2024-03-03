@@ -1,0 +1,41 @@
+2024-02-29 18:45:47.202 [info] Extension host with pid 67910 started
+2024-02-29 18:45:47.202 [info] Skipping acquiring lock for /home/barbarousa/.config/Code/User/workspaceStorage/b57af120d66fa395a5fe10177522aa21.
+2024-02-29 18:45:47.297 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2024-02-29 18:45:47.366 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-02-29 18:45:47.484 [info] Eager extensions activated
+2024-02-29 18:45:47.566 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:45:47.578 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:45:54.372 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+2024-02-29 18:45:54.791 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2024-02-29 18:46:22.069 [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
+2024-02-29 18:47:34.223 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-02-29 18:47:34.365 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-02-29 18:47:34.464 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-02-29 18:48:25.669 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:25.732 [info] ExtensionService#_doActivateExtension aaron-bond.better-comments, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:25.752 [info] ExtensionService#_doActivateExtension ecmel.vscode-html-css, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:25.756 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: false, activationEvent: '*'
+2024-02-29 18:48:25.814 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:25.951 [info] ExtensionService#_doActivateExtension naumovs.color-highlight, startup: false, activationEvent: '*'
+2024-02-29 18:48:25.972 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.001 [info] ExtensionService#_doActivateExtension Postman.postman-for-vscode, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.697 [info] ExtensionService#_doActivateExtension bradlc.vscode-tailwindcss, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.765 [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense, startup: false, activationEvent: '*'
+2024-02-29 18:48:26.789 [info] ExtensionService#_doActivateExtension zhuangtongfa.material-theme, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.821 [info] ExtensionService#_doActivateExtension ExodiusStudios.comment-anchors, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.863 [info] ExtensionService#_doActivateExtension doppler.doppler-vscode, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:26.919 [info] ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:27.124 [info] ExtensionService#_doActivateExtension GitHub.copilot, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:27.576 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 18:48:27.774 [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer, startup: false, activationEvent: 'onStartupFinished'
+2024-02-29 19:09:18.947 [warning] TextEditor is closed/disposed
+2024-02-29 19:20:10.242 [warning] TextEditor is closed/disposed
+2024-02-29 19:20:17.598 [warning] TextEditor is closed/disposed
+2024-02-29 19:20:18.270 [warning] TextEditor is closed/disposed
+2024-02-29 19:25:06.914 [warning] TextEditor is closed/disposed
+2024-02-29 19:31:27.492 [warning] TextEditor is closed/disposed
+2024-02-29 20:06:29.332 [warning] TextEditor is closed/disposed
+2024-02-29 20:06:31.217 [warning] TextEditor is closed/disposed
+2024-02-29 20:06:39.689 [warning] TextEditor is closed/disposed
+2024-02-29 20:16:05.278 [warning] TextEditor is closed/disposed
+2024-02-29 20:16:07.979 [warning] TextEditor is closed/disposed
