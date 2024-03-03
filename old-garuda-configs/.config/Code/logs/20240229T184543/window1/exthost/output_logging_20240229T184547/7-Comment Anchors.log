@@ -1,8 +1,0 @@
-[Comment Anchors] Using matcher /(?:<!\x2d\x2d|\/\*\*|\/\*|\/\/|\*|#)(?:\x20{0,4}|\t{0,1})(!SECTION|SECTION|ANCHOR|REVIEW|FIXME|TODO|STUB|NOTE|LINK)(\[.*\])?(?:(?: +\x2d +|: +| +)(.*))?$/gm
-[Comment Anchors] Generated icon cache at /home/barbarousa/.config/Code/User/globalStorage/exodiusstudios.comment-anchors/icons
-[Comment Anchors] provideCompletionItems
-[Comment Anchors] provideCompletionItems
-[Comment Anchors] provideCompletionItems
-[Comment Anchors] provideCompletionItems
-[Comment Anchors] provideCompletionItems
-[Comment Anchors] provideCompletionItems

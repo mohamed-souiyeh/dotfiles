@@ -1,5 +1,0 @@
-(2024-02-29T17:48:27.910Z) [info] [extension] Extension activation started: 1709228907899
-(2024-02-29T17:48:28.556Z) [info] [extension] KV storage migration: partitionMigration started
-(2024-02-29T17:48:28.736Z) [info] [extension] KV storage migration: partitionMigration completed
-(2024-02-29T17:48:28.742Z) [info] [extension] Extension activation completed: 1709228908742
-(2024-02-29T17:48:28.742Z) [info] [extension] Extension activation took 843ms
