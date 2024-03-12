@@ -60,6 +60,7 @@ map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsea
 
 -- save file
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
+map({ 'n' }, '<leader>ww', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
 -- better indenting
 map('v', '<', '<gv')
@@ -84,6 +85,9 @@ map('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev search result
 -- lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
+-- lazy git
+map('n', '<leader>gg', '<cmd>LazyGitCurrentFile<cr>', { desc = 'LazyGit current file root dir' })
+map('n', '<leader>gG', '<cmd>LazyGit<cr>', { desc = 'Lazygit (cwd)' })
 -- new file
 map('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
 -- highlights under cursor
@@ -95,7 +99,7 @@ map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
 map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
 
 -- windows
-map('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
+-- map('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
 map('n', '<leader>wd', '<C-W>c', { desc = 'Delete window', remap = true })
 map('n', '<leader>w-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>w|', '<C-W>v', { desc = 'Split window right', remap = true })
