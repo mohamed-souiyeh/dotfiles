@@ -1,3 +1,6 @@
+-- FIX: this file contain an error that breaks the configuration when loaded that is
+-- is why we gonna load an empty table from it
+
 --[[
 --
 -- This file is not required for your own configuration,
@@ -33,20 +36,24 @@ local check_external_reqs = function()
   return true
 end
 
-return {
-  check = function()
-    vim.health.start 'kickstart.nvim'
+if false then
+  return {
+    check = function()
+      vim.health.start 'kickstart.nvim'
 
-    vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
+      vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
 
   Fix only warnings for plugins and languages you intend to use.
     Mason will give warnings for languages that are not installed.
     You do not need to install, unless you want to use those languages!]]
 
-    local uv = vim.uv or vim.loop
-    vim.health.info('System Information: ' .. vim.inspect(uv.os_uname()))
+      local uv = vim.uv or vim.loop
+      vim.health.info('System Information: ' .. vim.inspect(uv.os_uname()))
 
-    check_version()
-    check_external_reqs()
-  end,
-}
+      check_version()
+      check_external_reqs()
+    end,
+  }
+end
+
+return {}

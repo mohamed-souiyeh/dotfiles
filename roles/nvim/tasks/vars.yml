@@ -6,3 +6,4 @@ nvim_dependencies:
   - unzip
   - gcc
   - fd
+  - tree-sitter
