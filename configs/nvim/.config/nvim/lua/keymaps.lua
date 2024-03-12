@@ -61,6 +61,8 @@ map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsea
 -- save file
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 map({ 'n' }, '<leader>ww', '<cmd>w<cr><esc>', { desc = 'Save file' })
+map({ 'n' }, '<leader>wq', '<cmd>wq<cr><esc>', { desc = 'Save file and quit' })
+map({ 'n' }, '<leader>wqa', '<cmd>wq<cr><esc>', { desc = 'Save file and quit all' })
 
 -- better indenting
 map('v', '<', '<gv')
@@ -126,5 +128,3 @@ map({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)', { desc = 'yanky put before cu
 map({ 'n', 'x' }, 'y', '<Plug>(YankyYank)', { desc = 'yanky yank boi' })
 map('n', '<c-p>', '<Plug>(YankyPreviousEntry)', { desc = 'previous yanky yank-ring entry' })
 map('n', '<c-n>', '<Plug>(YankyNextEntry)', { desc = 'next yanky yank-ring enrty' })
-
-
