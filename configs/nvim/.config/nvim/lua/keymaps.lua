@@ -88,6 +88,7 @@ map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 -- lazy git
 map('n', '<leader>gg', '<cmd>LazyGitCurrentFile<cr>', { desc = 'LazyGit current file root dir' })
 map('n', '<leader>gG', '<cmd>LazyGit<cr>', { desc = 'Lazygit (cwd)' })
+
 -- new file
 map('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
 -- highlights under cursor
@@ -125,3 +126,5 @@ map({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)', { desc = 'yanky put before cu
 map({ 'n', 'x' }, 'y', '<Plug>(YankyYank)', { desc = 'yanky yank boi' })
 map('n', '<c-p>', '<Plug>(YankyPreviousEntry)', { desc = 'previous yanky yank-ring entry' })
 map('n', '<c-n>', '<Plug>(YankyNextEntry)', { desc = 'next yanky yank-ring enrty' })
+
+
