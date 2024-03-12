@@ -41,10 +41,57 @@ return {
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
+      --   פּ ﯟ   some other good icons
+      local kind_icons = {
+        Text = '',
+        Method = 'm',
+        Function = '',
+        Constructor = '',
+        Field = '',
+        Variable = '',
+        Class = '',
+        Interface = '',
+        Module = '',
+        Property = '',
+        Unit = '',
+        Value = '',
+        Enum = '',
+        Keyword = '',
+        Snippet = '',
+        Color = '',
+        File = '',
+        Reference = '',
+        Folder = '',
+        EnumMember = '',
+        Constant = '',
+        Struct = '',
+        Event = '',
+        Operator = '',
+        TypeParameter = '',
+        Copilot = '',
+      }
+      -- find more here: https://www.nerdfonts.com/cheat-sheet
+
       cmp.setup {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
+          end,
+        },
+        formatting = {
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            -- Kind icons
+            vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            vim_item.menu = ({
+              nvim_lsp = '[LSP]',
+              luasnip = '[Snippet]',
+              buffer = '[Buffer]',
+              path = '[Path]',
+              copilot = '[Copilot]',
+            })[entry.source.name]
+            return vim_item
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
@@ -89,6 +136,9 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
+          -- Copilot Source
+          { name = 'copilot', group_index = 2 },
+          -- Other Sources
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           -- { name = 'path' },
