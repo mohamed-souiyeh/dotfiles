@@ -77,7 +77,6 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'noice')
-      pcall(require('telescope').load_extension, 'ascii')
       pcall(require('telescope').load_extension, 'emoji')
       pcall(require('telescope').load_extension, 'yank_history')
       -- See `:help telescope.builtin`
@@ -90,8 +89,9 @@ return {
       local function custom_find_files()
         builtin.find_files(find_files_opts)
       end
-      vim.keymap.set('n', '<leader>se', '<cmd>Telescope emoji', { desc = '[S]earch [e]moji' })
-      vim.keymap.set('n', '<leader>sy', '<cmd>Telescope yank_history', { desc = '[S]earch [y]ank_history' })
+      vim.keymap.set('n', '<leader>se', '<cmd>Telescope emoji<CR>', { desc = '[S]earch [e]moji' })
+      vim.keymap.set('n', '<leader>sy', '<cmd>Telescope yank_history<CR>', { desc = '[S]earch [y]ank_history' })
+      vim.keymap.set('n', '<leader>sn', '<cmd>Telescope noice<CR>', { desc = '[S]earch [N]oice' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', custom_find_files, { desc = '[S]earch [F]iles' })
@@ -122,12 +122,12 @@ return {
       end, { desc = '[S]earch [/] in Open Files' })
 
       -- Shortcut for searching your neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
+      vim.keymap.set('n', '<leader>sc', function()
         builtin.find_files {
           cwd = vim.fn.stdpath 'config',
           prompt_title = 'Find In Config Files',
         }
-      end, { desc = '[S]earch [N]eovim files' })
+      end, { desc = '[S]earch neovim [C]onfig files' })
     end,
   },
 }

@@ -27,7 +27,7 @@ return {
         ['g'] = { name = '[G]oto', _ = 'which_key_ignore' },
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument/[D]ebugger', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[R]ename/[R]eplace', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>f'] = { name = '[F]file', _ = 'which_key_ignore' },
@@ -38,7 +38,7 @@ return {
         ['<leader>gh'] = { name = '[h]unks', _ = 'which_key_ignore' },
         ['<leader><tab>'] = { name = '[T]abs', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = '+diagnostics/quickfix', _ = 'which_key_ignore' },
-        ['<leader>sn'] = { name = '+noice' },
+        ['<leader>un'] = { name = '[U]i [N]oice' },
       }
     end,
   },

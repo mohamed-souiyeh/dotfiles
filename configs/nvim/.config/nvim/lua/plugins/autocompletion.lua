@@ -22,13 +22,13 @@ return {
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
       'f3fora/cmp-spell',
       'https://codeberg.org/FelipeLema/cmp-async-path',
       'Dynge/gitmoji.nvim',
       'hrsh7th/cmp-emoji',
       'chrisgrieser/cmp_yanky',
       'gbprod/yanky.nvim',
+      'onsails/lspkind.nvim',
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
@@ -41,36 +41,6 @@ return {
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
-      --   פּ ﯟ   some other good icons
-      local kind_icons = {
-        -- Text = 'Text',
-        -- Method = 'Method',
-        -- Function = 'Function',
-        -- Constructor = '',
-        -- Field = '',
-        Variable = '',
-        -- Class = 'Class',
-        -- Interface = '',
-        -- Module = '',
-        -- Property = 'Property',
-        -- Unit = 'Unit',
-        -- Enum = 'Enum',
-        -- Keyword = 'Keyword',
-        Snippet = '',
-        -- Color = 'Color',
-        File = '',
-        Reference = '',
-        Folder = '',
-        -- EnumMember = '',
-        Constant = '',
-        Struct = '',
-        Event = '',
-        -- Operator = '',
-        -- TypeParameter = 'TypeParameter',
-        Copilot = '',
-      }
-      -- find more here: https://www.nerdfonts.com/cheat-sheet
-
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -78,20 +48,12 @@ return {
           end,
         },
         formatting = {
-          fields = { 'kind', 'abbr', 'menu' },
-          format = function(entry, vim_item)
-            -- Kind icons
-            vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-            vim_item.menu = ({
-              nvim_lsp = '[LSP]',
-              luasnip = '[Snippet]',
-              buffer = '[Buffer]',
-              path = '[Path]',
-              copilot = '[Copilot]',
-            })[entry.source.name]
-            return vim_item
-          end,
+          format = require('lspkind').cmp_format {
+            mode = 'symbol',
+            maxwidth = 50,
+            ellipsis_char = '...',
+            symbol_map = require('lazyvim.util').icons.kinds,
+          },
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
@@ -140,7 +102,6 @@ return {
           -- Other Sources
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-          -- { name = 'path' },
           { name = 'spell' },
           {
             name = 'async-path',

@@ -70,4 +70,7 @@ return {
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
     end,
   },
+  {
+    'tpope/vim-fugitive',
+  },
 }

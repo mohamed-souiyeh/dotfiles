@@ -2,7 +2,6 @@ return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
   dependencies = {
-    'MaximilianLloyd/ascii.nvim',
     'MunifTanjim/nui.nvim',
   },
   opts = function()
@@ -26,7 +25,6 @@ return {
       ██████  █████████████████████ ████ █████ █████ ████ ██████ 
                                                                        ]]
 
-    -- local logo = require('ascii').art.text.neovim.sharp
     logo = string.rep('\n', 4) .. logo .. '\n\n'
 
     local builtin = require 'telescope.builtin'

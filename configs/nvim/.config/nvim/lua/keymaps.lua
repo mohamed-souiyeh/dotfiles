@@ -12,8 +12,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>xe', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -39,7 +39,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NeoTree keymaps
-vim.keymap.set('n', '<leader>n', '<Cmd>Neotree toggle<CR>', { desc = 'Toggel [N]eotree' })
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'Toggel [E]xplorer Notree' })
 
 -- NOTE: keymaps from lazyvim because i like them
 
@@ -62,7 +62,7 @@ map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsea
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 map({ 'n' }, '<leader>ww', '<cmd>w<cr><esc>', { desc = 'Save file' })
 map({ 'n' }, '<leader>wq', '<cmd>wq<cr><esc>', { desc = 'Save file and quit' })
-map({ 'n' }, '<leader>wqa', '<cmd>wq<cr><esc>', { desc = 'Save file and quit all' })
+map({ 'n' }, '<leader>wqa', '<cmd>wqa<cr><esc>', { desc = 'Save file and quit all' })
 
 -- better indenting
 map('v', '<', '<gv')
@@ -96,7 +96,8 @@ map('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
 -- highlights under cursor
 map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
 -- quit
-map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
+map('n', '<leader>qa', '<cmd>qa<cr>', { desc = 'Quit all' })
+map('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit current window' })
 
 -- highlights under cursor
 map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
@@ -108,9 +109,6 @@ map('n', '<leader>w-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>w|', '<C-W>v', { desc = 'Split window right', remap = true })
 map('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
-map({ 'o', 'x' }, 'lp', function()
-  require('yanky.textobj').last_put()
-end, { desc = '' })
 
 -- tabs
 map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
@@ -121,10 +119,10 @@ map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- yanky keymaps
-map({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)', { desc = 'yanky put after cursor' })
-map({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)', { desc = 'yanky put before cursor' })
-map({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)', { desc = 'yanky put after cursor and leave the cursor after' })
-map({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)', { desc = 'yanky put before cursor and leave the cursor after' })
-map({ 'n', 'x' }, 'y', '<Plug>(YankyYank)', { desc = 'yanky yank boi' })
-map('n', '<c-p>', '<Plug>(YankyPreviousEntry)', { desc = 'previous yanky yank-ring entry' })
-map('n', '<c-n>', '<Plug>(YankyNextEntry)', { desc = 'next yanky yank-ring enrty' })
+-- map({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)', { desc = 'yanky put after cursor' })
+-- map({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)', { desc = 'yanky put before cursor' })
+-- map({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)', { desc = 'yanky put after cursor and leave the cursor after' })
+-- map({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)', { desc = 'yanky put before cursor and leave the cursor after' })
+-- map({ 'n', 'x' }, 'y', '<Plug>(YankyYank)', { desc = 'yanky yank boi' })
+-- map('n', '<c-p>', '<Plug>(YankyPreviousEntry)', { desc = 'previous yanky yank-ring entry' })
+-- map('n', '<c-n>', '<Plug>(YankyNextEntry)', { desc = 'next yanky yank-ring enrty' })
