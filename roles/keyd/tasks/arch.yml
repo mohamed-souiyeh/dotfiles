@@ -54,11 +54,11 @@
     state: absent
   become: true
 
-- name: Create symbolic link for keyd service
-  ansible.builtin.file:
+- name: Copy keyd service file
+  ansible.builtin.copy:
     src: "{{ keyd_vars.PREFIX }}/lib/systemd/system/keyd.service"
     dest: "/etc/systemd/system/keyd.service"
-    state: link
+    # Retain "become: true" if required for privileges
   become: true
 
 - name: Enable keyd service

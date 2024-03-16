@@ -1,3 +1,4 @@
 ---
 obsidian_dependencies:
   - python-jmespath
+  - ksshaskpass
