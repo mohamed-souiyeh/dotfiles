@@ -10,7 +10,7 @@ keybinds clear-defaults=true {
         bind "Alt g" { SwitchToMode "Normal"; }
     }
     resize {
-        bind "Alt n" { SwitchToMode "Normal"; }
+        bind "Alt r" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -40,7 +40,7 @@ keybinds clear-defaults=true {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Alt h" { SwitchToMode "Normal"; }
+        bind "Alt m" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -148,7 +148,7 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }
-        bind "Alt q" { Quit; }
+        bind "Alt q" { Detach; }
         bind "Alt n" { NewPane; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }

@@ -275,9 +275,6 @@ ansible-playbook $DFLAGS --diff "$DOTFILES_DIR/main.yml" --ask-vault-pass --ask-
 #return to the last directorie
 popd 2>&1 > /dev/null
 
-_task "Refreshing docker group"
-  _cmd "newgrp docker"; _task_done
-
 
 #dont forget to run keyd activation command here after the playbook id done and check if u need to do it at every startup to add it to the .zshrc file and bashrc
 
