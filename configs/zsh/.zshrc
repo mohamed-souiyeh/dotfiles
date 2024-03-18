@@ -34,7 +34,7 @@ export EDITOR='nvim'
 # alias cat='bat --paging=never --theme="base16"'
 # alias ll='n -Hde'
 alias ssh='TERM="xterm-256color" ssh'
-
+alias lg='lazygit'
 
 # function backup --argument filename
 #     cp $filename $filename.bak
