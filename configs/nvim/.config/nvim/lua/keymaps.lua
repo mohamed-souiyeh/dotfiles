@@ -77,12 +77,12 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 -- Move Lines
-map('n', '<C-S-j>', '<cmd>m .+1<cr>==', { desc = 'Move down' })
-map('n', '<C-S-k>', '<cmd>m .-2<cr>==', { desc = 'Move up' })
-map('i', '<C-S-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move down' })
-map('i', '<C-S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move up' })
-map('v', '<C-S-j>', ":m '>+1<cr>gv=gv", { desc = 'Move down' })
-map('v', '<C-S-k>', ":m '<-2<cr>gv=gv", { desc = 'Move up' })
+map('n', '<S-j>', '<cmd>m .+1<cr>==', { desc = 'Move down' })
+map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'Move up' })
+map('i', '<S-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move down' })
+map('i', '<S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move up' })
+map('v', '<S-j>', ":m '>+1<cr>gv=gv", { desc = 'Move down' })
+map('v', '<S-k>', ":m '<-2<cr>gv=gv", { desc = 'Move up' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next search result' })
