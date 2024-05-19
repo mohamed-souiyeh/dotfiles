@@ -11,6 +11,7 @@
   ],
   "modules-center": [],
   "modules-right": [
+    "custom/updates", 
     "custom/keyboard-layout",
     "backlight",
     "cpu",
@@ -22,6 +23,18 @@
     "clock",
     "custom/power"
   ],
+     "custom/updates": {
+       "format": "{} {icon}",
+       "return-type": "json",
+       "format-icons": {
+           "has-updates": "󱍷",
+           "updated": "󰂪",
+        "interval": 7200,
+       },
+       "exec-if": "which waybar-module-pacman-updates",
+       "exec": "waybar-module-pacman-updates",
+       "on-click": "foot -e update"
+   },
   // Modules configuration
   "custom/notification": {
     "tooltip": false,
@@ -86,9 +99,6 @@
     //"format": " {:%a %d %b  %I:%M %p}",	//12 hour format
     "format": " {:%a %d %b  %H:%M}", //24 hour format
     "format-alt": " {:%d/%m/%Y  %H:%M:%S}",
-    "timezones": [
-      "Europe/Berlin"
-    ],
     //"max-length": 200,
     "interval": 1,
     "on-click": "~/.config/waybar/scripts/OCV",
