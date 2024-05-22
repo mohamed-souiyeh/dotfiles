@@ -79,8 +79,8 @@ map('v', '>', '>gv')
 -- Move Lines
 map('n', '<S-j>', '<cmd>m .+1<cr>==', { desc = 'Move down' })
 map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'Move up' })
-map('i', '<S-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move down' })
-map('i', '<S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move up' })
+-- map('i', '<S-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move down' })
+-- map('i', '<S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move up' })
 map('v', '<S-j>', ":m '>+1<cr>gv=gv", { desc = 'Move down' })
 map('v', '<S-k>', ":m '<-2<cr>gv=gv", { desc = 'Move up' })
 
