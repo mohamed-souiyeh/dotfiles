@@ -2,7 +2,7 @@
 
 return {
   { -- Collection of various small independent plugins/modules
-    "echasnovski/mini.nvim",
+    'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -10,42 +10,42 @@ return {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
-      require("mini.ai").setup({ n_lines = 500 })
+      require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require("mini.surround").setup()
+      require('mini.surround').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   {
-    "echasnovski/mini.indentscope",
+    'echasnovski/mini.indentscope',
     version = false, -- wait till new 0.7.0 release to put it back on semver
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
       -- symbol = "▏",
-      symbol = "│",
+      symbol = '│',
       options = { try_as_border = true },
     },
     init = function()
-      vim.api.nvim_create_autocmd("FileType", {
+      vim.api.nvim_create_autocmd('FileType', {
         pattern = {
-          "help",
-          "alpha",
-          "dashboard",
-          "neo-tree",
-          "Trouble",
-          "trouble",
-          "lazy",
-          "mason",
-          "notify",
-          "toggleterm",
-          "lazyterm",
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
         },
         callback = function()
           vim.b.miniindentscope_disable = true
@@ -54,26 +54,26 @@ return {
     end,
   },
   {
-    "echasnovski/mini.pairs",
+    'echasnovski/mini.pairs',
     version = false,
     opts = {},
   },
   {
-    "echasnovski/mini.bracketed",
+    'echasnovski/mini.bracketed',
     version = false,
     opts = {},
   },
   {
     -- buffer remove
-    "echasnovski/mini.bufremove",
+    'echasnovski/mini.bufremove',
 
     keys = {
       {
-        "<leader>bd",
+        '<leader>bd',
         function()
-          local bd = require("mini.bufremove").delete
+          local bd = require('mini.bufremove').delete
           if vim.bo.modified then
-            local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+            local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
             if choice == 1 then -- Yes
               vim.cmd.write()
               bd(0)
@@ -84,7 +84,7 @@ return {
             bd(0)
           end
         end,
-        desc = "Delete Buffer",
+        desc = 'Delete Buffer',
       },
       -- stylua: ignore
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
@@ -92,27 +92,27 @@ return {
   },
   {
     -- to animatet the cursor and other stuff
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
+    'echasnovski/mini.animate',
+    event = 'VeryLazy',
     opts = function()
       -- don't use animate when scrolling with the mouse
       local mouse_scrolled = false
-      for _, scroll in ipairs({ "Up", "Down" }) do
-        local key = "<ScrollWheel" .. scroll .. ">"
-        vim.keymap.set({ "", "i" }, key, function()
+      for _, scroll in ipairs { 'Up', 'Down' } do
+        local key = '<ScrollWheel' .. scroll .. '>'
+        vim.keymap.set({ '', 'i' }, key, function()
           mouse_scrolled = true
           return key
         end, { expr = true })
       end
 
-      local animate = require("mini.animate")
+      local animate = require 'mini.animate'
       return {
         resize = {
-          timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
+          timing = animate.gen_timing.linear { duration = 100, unit = 'total' },
         },
         scroll = {
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-          subscroll = animate.gen_subscroll.equal({
+          timing = animate.gen_timing.linear { duration = 150, unit = 'total' },
+          subscroll = animate.gen_subscroll.equal {
             predicate = function(total_scroll)
               if mouse_scrolled then
                 mouse_scrolled = false
@@ -120,7 +120,7 @@ return {
               end
               return total_scroll > 1
             end,
-          }),
+          },
         },
       }
     end,
